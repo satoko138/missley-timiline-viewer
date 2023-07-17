@@ -1,8 +1,9 @@
 import express from 'express';
 import { configure, getLogger } from 'log4js';
 import { LogSetting } from './config';
-import { GetTimelineParam } from './api-types';
+import { GetOgpParam, GetTimelineParam } from './api-types';
 import { getTimeline } from './api/getTimeline';
+import { getOgp } from './api/getOgp';
 
 configure(LogSetting);
 const logger = getLogger();
@@ -35,6 +36,23 @@ app.get('/api/list', async(req, res) => {
     }
 })
 
+app.get('/api/ogp', async(req, res) => {
+    try {
+        const param = req.query as GetOgpParam;
+        logger.info('[start] api/ogp', param);
+        const result = await getOgp(param.url);
+        logger.debug('result', result);
+        res.send(result);
+
+    } catch(e) {
+        logger.warn('ogp error', e);
+        res.status(500).send(e);
+
+    } finally {
+        logger.info('[end] api/ogp')
+    }
+
+})
 app.listen(80, () => {
     logger.info('start express server');
 });

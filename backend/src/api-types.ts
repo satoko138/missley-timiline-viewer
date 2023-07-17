@@ -19,3 +19,14 @@ export type GetTimelineResult = {
     author: Author;
     posts: Post[];
 }
+
+export type GetOgpParam = {
+    url: string;
+}
+
+export type GetOgpResult = {
+    title: string;
+    description: string;
+    image?: string;
+};
+

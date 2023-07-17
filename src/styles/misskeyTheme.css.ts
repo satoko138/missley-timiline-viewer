@@ -9,7 +9,7 @@ export const [myTheme, myVars] = createTheme({
     }
 })
 
-globalStyle('a', {
+globalStyle('a, a *', {
     color: myVars.color.primary,
 });
 globalStyle('*', {
