@@ -5,7 +5,7 @@ import { XMLParser } from "fast-xml-parser";
 import { RssObject } from './types';
 import dayjs from 'dayjs';
 
-const xp = new XMLParser();
+const xp = new XMLParser({ ignoreAttributes: false });
 const logger = getLogger();
 
 export async function getTimeline(param: GetTimelineParam): Promise<GetTimelineResult> {
@@ -20,7 +20,8 @@ export async function getTimeline(param: GetTimelineParam): Promise<GetTimelineR
             return {
                 id: i.guid,
                 link: i.link,
-                content: i["content:encoded"],
+                content: i["content:encoded"].replace(/:(.)*:/g, ''),   // 絵文字除去
+                image: i.enclosure?.["@_url"],
                 pub_date: dayjs(i.pubDate).format('YYYY-MM-DD hh:mm'),
             }
         });

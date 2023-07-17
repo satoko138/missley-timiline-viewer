@@ -14,6 +14,10 @@ export type RssObject = {
                 link: string;
                 pubDate: string;
                 'content:encoded': string;
+                enclosure?: {
+                    '@_url': string;
+                    '@_type': string;
+                }
             }[];
         }
     

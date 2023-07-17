@@ -2,6 +2,7 @@ export type Post = {
     id: string;
     link: string;
     content: string;
+    image?: string;
     pub_date: string;
 }
 export type Author = {

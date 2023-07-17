@@ -3,7 +3,6 @@ import ogpParser from 'ogp-parser';
 
 export async function getOgp(url: string): Promise<GetOgpResult> {
     const metadata = await ogpParser(url);
-    console.log('metadata', metadata);
     const ogp = metadata.ogp as Ogp;
     return {
         title: metadata.title ?? '',

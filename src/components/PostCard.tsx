@@ -40,6 +40,7 @@ export default function PostCard(props: Props) {
     useWatch(() => {
         if (!embedUrl) return;
         if (!myRef.current) return;
+        if (props.post.image) return;   // イメージ優先
         if (showEmbed) return;
         const top = myRef.current.getBoundingClientRect().top;
         const isShow = top < props.parentAreaRectInfo.height;
@@ -52,6 +53,9 @@ export default function PostCard(props: Props) {
             <div>{content}</div>
             {(showEmbed && embedUrl) && 
                 <OgpCard url={embedUrl} />
+            }
+            {props.post.image &&
+                <img src={props.post.image} alt="image" />
             }
         </div>
     );
