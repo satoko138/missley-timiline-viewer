@@ -1,9 +1,9 @@
-import React, { useMemo, useState } from 'react';
-import { GetOgpResult, Post } from '../types/api-types';
+import React, { useMemo } from 'react';
+import { Post } from '../types/api-types';
 import { card, pubDate } from './PostCard.css';
 import reactStringReplace from "react-string-replace";
 import { HiOutlineExternalLink } from 'react-icons/hi';
-import { useWatch } from '../util/useWatch';
+import OgpCard from './OgpCard';
 
 type Props = {
     post: Post;
@@ -32,29 +32,13 @@ export default function PostCard(props: Props) {
         return match[0];
     }, [props.post.content]);
 
-    const [ ogp, setOgp ] = useState<GetOgpResult|undefined>();
-    useWatch(() => {
-        if (!embedUrl) return;
-        try {
-            const url = '/api/ogp?url=' + embedUrl;
-            fetch(encodeURI(url)).then((res) => {
-                return res.json();
-            })
-            .then(json => {
-                setOgp(json);
-            })
-        } catch(e) {
-            console.warn(e);
-        }
-    }, [embedUrl]);
-
     return (
         <div className={card}>
-            {ogp && 
-            <p>{JSON.stringify(ogp)}</p>
-            }
             <div className={pubDate}>{props.post.pub_date}</div>
             <div>{content}</div>
+            {embedUrl && 
+                <OgpCard url={embedUrl} />
+            }
         </div>
     );
 }
