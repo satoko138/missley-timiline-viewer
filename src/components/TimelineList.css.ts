@@ -4,6 +4,11 @@ import { myVars } from '../styles/misskeyTheme.css';
 export const container = style({
     position: 'relative',
     height: '100%',
+})
+
+export const innerContainer = style({
+    position: 'relative',
+    height: '100%',
     border: `1px solid ${myVars.color.light}`,
     borderRadius: '5px',
 })

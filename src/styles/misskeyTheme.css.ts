@@ -12,3 +12,6 @@ export const [myTheme, myVars] = createTheme({
 globalStyle('a', {
     color: myVars.color.primary,
 });
+globalStyle('*', {
+    color: myVars.color.dark,
+});

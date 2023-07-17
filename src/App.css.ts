@@ -19,3 +19,14 @@ export const timelineArea = style({
     overflow: 'hidden',
     height: '100vh',
 });
+
+export const spinnerOverlay = style({
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255, .5)',
+    zIndex: 10,
+})
