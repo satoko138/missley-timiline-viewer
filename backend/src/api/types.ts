@@ -8,6 +8,7 @@ export type RssObject = {
                 title: string;
                 url: string;
             };
+            copyright: string;
             item: {
                 guid: string;
                 link: string;

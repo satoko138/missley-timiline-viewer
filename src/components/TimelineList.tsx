@@ -4,9 +4,9 @@ import Spinner from './Spinner';
 import ConfirmDialog, { ConfirmParam } from './ConfirmDialog';
 import { useWatch } from '../util/useWatch';
 import { Condition } from '../types/common';
-import { GetTimelineResult, Post } from '../types/api-types';
+import { Author, GetTimelineResult, Post } from '../types/api-types';
 import PostCard from './PostCard';
-import { container } from './TimelineList.css';
+import { authorArea, container, icon, postsArea } from './TimelineList.css';
 
 type Props = {
     condition?: Condition;
@@ -15,6 +15,7 @@ export default function MediaList(props: Props) {
     const loadingRef = useRef(false);
     const [ loading, setLoading ] = useState(false);
     const [ posts, setPosts ] = useState<Post[]>([]);
+    const [ author, setAuthor] = useState<Author|undefined>();
 
     const [ confirm, setConfirm ] = useState<ConfirmParam|undefined>();
 
@@ -39,6 +40,7 @@ export default function MediaList(props: Props) {
         loadingRef.current = true;
         setLoading(true);
         setPosts([]);
+        setAuthor(undefined);
 
         try {
             const param = Object.entries(props.condition).map(entry => {
@@ -50,9 +52,8 @@ export default function MediaList(props: Props) {
                 throw new Error(res.statusText);
             }
             const result = await res.json() as GetTimelineResult;
-            setPosts((state) => {
-                return state.concat(result.posts);
-            });
+            setPosts(result.posts);
+            setAuthor(result.author);
     
         } catch(e) {
             console.warn(e);
@@ -77,8 +78,13 @@ export default function MediaList(props: Props) {
                     </div>
                 }
                 <div className={styles.TableArea}>
-                    <div>Author</div>
-                    <div>
+                    {author && 
+                        <div className={authorArea}>
+                            <img src={author.icon} className={icon} />
+                            {author.name} のつぶやき
+                        </div>
+                    }
+                    <div className={postsArea}>
                         {posts.map((post) => {
                             return (
                                 <PostCard key={post.id} post={post} />

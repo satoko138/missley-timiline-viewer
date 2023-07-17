@@ -10,14 +10,11 @@ const logger = getLogger();
 
 export async function getTimeline(param: GetTimelineParam): Promise<GetTimelineResult> {
     const url = `https://${param.server}/@${param.account}.rss`;
-    console.log('url', url);
+    logger.debug('url', url);
     try {
         const res = await axios.get(url);
         const rssContents = res.data;
-        console.log(rssContents);
         const jObj = xp.parse(rssContents) as RssObject;
-        console.log(jObj.rss.channel);
-        // console.log(jObj.channel.item);
    
         const posts = jObj.rss.channel.item.map((i): Post => {
             return {
@@ -29,7 +26,7 @@ export async function getTimeline(param: GetTimelineParam): Promise<GetTimelineR
         });
         return {
             author: {
-                name: jObj.rss.channel.title,
+                name: jObj.rss.channel.copyright.replace(/:(.)*:/g, ''),    // 絵文字除去
                 description: jObj.rss.channel.description,
                 icon: jObj.rss.channel.image.url,
                 link: jObj.rss.channel.link,
