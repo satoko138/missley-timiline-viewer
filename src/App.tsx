@@ -10,6 +10,7 @@ import { GetTimelineResult } from './types/api-types';
 import { useWatch } from './util/useWatch';
 import ConfirmDialog, { ConfirmParam } from './components/ConfirmDialog';
 import Spinner from './components/Spinner';
+import IframeScriptField from './components/IframeScriptField';
 
 function App() {
     const [ searchParams ] = useSearchParams();
@@ -103,9 +104,14 @@ function App() {
     return (
         <div className={`${app} ${myTheme}`}>
             {showCondition &&
-                <div className={conditionArea}>
-                    <ConditionForm onChange={(condition) => setCondition(condition)} />
-                </div>
+                <>
+                    <div className={conditionArea}>
+                        <ConditionForm onChange={(condition) => setCondition(condition)} />
+                    </div>
+                    {(data && condition) &&
+                        <IframeScriptField condition={condition} />
+                    }
+                </>
             }
             {data &&
                 <div className={timelineArea}>
