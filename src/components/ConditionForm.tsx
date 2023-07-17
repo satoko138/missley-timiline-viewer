@@ -19,7 +19,8 @@ export default function ConditionForm(props: Props) {
         props.onChange(condition);
 
         const url = `${document.location.protocol}//${document.location.host}?server=${server}&account=${account}`;
-        setIframeScript(encodeURI(url));
+        const iframe = `<iframe title="Misskey Timelines" src="${encodeURI(url)}"</iframe>`;
+        setIframeScript(iframe);
 
     }, [props, server, account]);
 

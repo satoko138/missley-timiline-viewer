@@ -6,7 +6,7 @@ import { useWatch } from '../util/useWatch';
 import { Condition } from '../types/common';
 import { Author, GetTimelineResult, Post } from '../types/api-types';
 import PostCard from './PostCard';
-import { authorArea, container, icon, postsArea } from './TimelineList.css';
+import { authorArea, authorName, container, icon, postsArea } from './TimelineList.css';
 
 type Props = {
     condition?: Condition;
@@ -72,26 +72,25 @@ export default function MediaList(props: Props) {
     return (
         <>
             <div className={container}>
-                {loading &&
+                {loading ?
                     <div className={styles.SpinnerOverlay}>
                         <Spinner />
                     </div>
-                }
-                <div className={styles.TableArea}>
-                    {author && 
+                    :
+                    <>
                         <div className={authorArea}>
-                            <img src={author.icon} className={icon} />
-                            {author.name} のつぶやき
+                            <img src={author?.icon} className={icon} />
+                            <a href={author?.link} className={authorName}>{author?.name}</a> のつぶやき
                         </div>
-                    }
-                    <div className={postsArea}>
-                        {posts.map((post) => {
-                            return (
-                                <PostCard key={post.id} post={post} />
-                            )
-                        })}
-                    </div>
-                </div>
+                        <div className={postsArea}>
+                            {posts.map((post) => {
+                                return (
+                                    <PostCard key={post.id} post={post} />
+                                )
+                            })}
+                        </div>
+                    </>
+                }
             </div>
             <ConfirmDialog show={confirm!==undefined} {...confirm} onClose={onConfirmClose} />
         </>

@@ -38,4 +38,6 @@ export const iframeArea = style({
 
 export const iframeTextArea = style({
     display: 'block',
+    height: '5rem',
+    width: '100%',
 })

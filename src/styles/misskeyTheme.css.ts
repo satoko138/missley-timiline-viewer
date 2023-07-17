@@ -1,4 +1,4 @@
-import { createTheme } from '@vanilla-extract/css';
+import { createTheme, globalStyle } from '@vanilla-extract/css';
 
 export const [myTheme, myVars] = createTheme({
     color: {
@@ -9,3 +9,6 @@ export const [myTheme, myVars] = createTheme({
     }
 })
 
+globalStyle('a', {
+    color: myVars.color.primary,
+});

@@ -3,6 +3,7 @@ import { myVars } from '../styles/misskeyTheme.css';
 
 export const container = style({
     position: 'relative',
+    height: '100%',
     border: `1px solid ${myVars.color.light}`,
     borderRadius: '5px',
 })
@@ -15,9 +16,13 @@ export const authorArea = style({
     boxSizing: 'border-box',
     borderBottom: `1px solid ${myVars.color.light}`,
 });
+export const authorName = style ({
+    textDecoration: 'none',
+})
 export const postsArea = style({
-    maxHeight: '300px',
+    maxHeight: 'calc(100% - 3rem)',
     overflowY: 'auto',
+    overflowX: 'hidden',
 })
 export const icon = style({
     height: '100%',

@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from 'react';
-import MediaList from './components/TimelineList';
+import TimelineList from './components/TimelineList';
 import ConditionForm from './components/ConditionForm';
 import { Condition } from './types/common';
 import { useSearchParams } from 'react-router-dom';
 import { useMounted } from './util/useMounted';
-import { app, conditionArea } from './App.css';
+import { app, conditionArea, timelineArea } from './App.css';
 import { myTheme } from './styles/misskeyTheme.css';
 
 function App() {
@@ -38,7 +38,9 @@ function App() {
                     <ConditionForm onChange={(condition) => setCondition(condition)} />
                 </div>
             }
-            <MediaList condition={condition} />
+            <div className={timelineArea}>
+                <TimelineList condition={condition} />
+            </div>
         </div>
     );
 }
