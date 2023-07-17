@@ -1,5 +1,4 @@
 import React, { useRef, useCallback, useState } from 'react';
-import { BsFillPlayCircleFill } from 'react-icons/bs';
 import styles from './TimelineList.module.scss';
 import Spinner from './Spinner';
 import ConfirmDialog, { ConfirmParam } from './ConfirmDialog';
