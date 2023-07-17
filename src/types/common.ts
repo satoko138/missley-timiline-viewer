@@ -1,3 +1,4 @@
 export type Condition = {
-    keyword: string;
+    server: string;
+    account: string;
 }

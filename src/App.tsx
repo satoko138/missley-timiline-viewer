@@ -12,11 +12,12 @@ function App() {
     const [ initialized, setInitialized ] = useState(false);
 
     useMounted(() => {
-        const keyword = searchParams.get('keyword');
-        console.log('keyword', keyword);
-        if (keyword) {
+        const server = searchParams.get('server');
+        console.log('server', server);
+        if (server) {
             setCondition({
-                keyword,
+                server,
+                account: '',
             })
         }
         setInitialized(true);

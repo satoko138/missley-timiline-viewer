@@ -15,24 +15,17 @@ export default function ConditionForm(props: Props) {
 
     const onSearch = useCallback(() => {
         if (!props.onChange) return;
-        const condition: Condition | undefined = (server.length === 0) ? undefined : {keyword: server};
+        const condition: Condition = { server, account };
         props.onChange(condition);
 
         if (condition) {
-            const url = `${document.location.protocol}//${document.location.host}?keyword=${server}`;
+            const url = '';
             setUrl(encodeURI(url));
 
         } else {
             setUrl('');
         }
     }, [props, server]);
-
-    const onClear = useCallback(() => {
-        setServer('');
-        if (props.onChange) {
-            props.onChange(undefined);
-        }
-    }, [props]);
 
     const [ showCopied, setShowCopied ] = useState(false);
     const onCopyToClipboard = useCallback(() => {
@@ -54,8 +47,7 @@ export default function ConditionForm(props: Props) {
                     <input type='text' className={input}
                             value={account} onChange={(evt) => setAccount(evt.target.value)} />
                 </TextField>
-                <Button type='primary' onClick={onSearch}>絞り込み</Button>
-                <Button type='outline-primary' onClick={onClear}>クリア</Button>
+                <Button type='primary' onClick={onSearch}>検索</Button>
             </div>
             <div className={iframeArea}>
                 <label>

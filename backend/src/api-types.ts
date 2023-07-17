@@ -1,7 +1,14 @@
 export type Post = {
     id: string;
-    title: string;
-    publish_date: string;
+    link: string;
+    content: string;
+    pub_date: string;
+}
+export type Author = {
+    name: string;
+    link: string;
+    description: string;
+    icon: string;
 }
 export type GetTimelineParam = {
     server: string;
@@ -9,5 +16,6 @@ export type GetTimelineParam = {
 }
 
 export type GetTimelineResult = {
+    author: Author;
     posts: Post[];
 }
