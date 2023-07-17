@@ -55,7 +55,7 @@ export default function PostCard(props: Props) {
                 <OgpCard url={embedUrl} />
             }
             {props.post.image &&
-                <img src={props.post.image} alt="image" />
+                <img src={props.post.image} alt="post" />
             }
         </div>
     );
