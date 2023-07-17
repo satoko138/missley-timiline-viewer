@@ -5,6 +5,8 @@ import ConfirmDialog, { ConfirmParam } from './ConfirmDialog';
 import { useWatch } from '../util/useWatch';
 import { Condition } from '../types/common';
 import { GetTimelineResult, Post } from '../types/api-types';
+import PostCard from './PostCard';
+import { container } from './TimelineList.css';
 
 type Props = {
     condition?: Condition;
@@ -36,6 +38,7 @@ export default function MediaList(props: Props) {
         console.log('load start');
         loadingRef.current = true;
         setLoading(true);
+        setPosts([]);
 
         try {
             const param = Object.entries(props.condition).map(entry => {
@@ -66,43 +69,25 @@ export default function MediaList(props: Props) {
     }, []);
 
     return (
-        <div className={styles.Container}>
-            <div className={styles.Container}>
+        <>
+            <div className={container}>
                 {loading &&
                     <div className={styles.SpinnerOverlay}>
                         <Spinner />
                     </div>
                 }
                 <div className={styles.TableArea}>
-                    <table className={styles.Table}>
-                        <thead>
-                            <tr>
-                                <th>
-                                    配信日
-                                </th>
-                                <th className={styles.Title}>
-                                    タイトル
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {posts.map((post, index) => {
-                                return (
-                                    <tr key={post.id}>
-                                        <td>
-                                            {post.pub_date}
-                                        </td>
-                                        <td>
-                                            {post.content}
-                                        </td>
-                                    </tr>
-                                )
-                            })}
-                        </tbody>
-                    </table>
+                    <div>Author</div>
+                    <div>
+                        {posts.map((post) => {
+                            return (
+                                <PostCard key={post.id} post={post} />
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
             <ConfirmDialog show={confirm!==undefined} {...confirm} onClose={onConfirmClose} />
-        </div>
+        </>
     );
 }

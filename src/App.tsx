@@ -4,7 +4,8 @@ import ConditionForm from './components/ConditionForm';
 import { Condition } from './types/common';
 import { useSearchParams } from 'react-router-dom';
 import { useMounted } from './util/useMounted';
-import styles from './App.module.scss';
+import { app, conditionArea } from './App.css';
+import { myTheme } from './styles/misskeyTheme.css';
 
 function App() {
     const [ searchParams ] = useSearchParams();
@@ -34,9 +35,9 @@ function App() {
     }
 
     return (
-        <div className={styles.App}>
+        <div className={`${app} ${myTheme}`}>
             {showCondition &&
-                <div className={styles.ConditionArea}>
+                <div className={conditionArea}>
                     <ConditionForm onChange={(condition) => setCondition(condition)} />
                 </div>
             }

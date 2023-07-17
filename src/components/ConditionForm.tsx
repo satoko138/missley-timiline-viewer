@@ -25,7 +25,7 @@ export default function ConditionForm(props: Props) {
         } else {
             setUrl('');
         }
-    }, [props, server]);
+    }, [props, server, account]);
 
     const [ showCopied, setShowCopied ] = useState(false);
     const onCopyToClipboard = useCallback(() => {
