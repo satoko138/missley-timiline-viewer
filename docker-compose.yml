@@ -1,0 +1,9 @@
+# 開発環境での動作確認用
+version: "3"
+services:
+  main:
+    image: misskey-timeline-viewer:latest
+    ports: 
+        - 80:80
+    volumes:
+        - ./log:/var/log/www

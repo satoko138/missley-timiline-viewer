@@ -24,8 +24,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "start": "craco start",
+    "build": "craco build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -47,9 +47,11 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@craco/craco": "^7.1.0",
+    "@vanilla-extract/babel-plugin": "^1.2.0",
     "@vanilla-extract/webpack-plugin": "^2.2.0",
-    "customize-cra": "^1.0.0",
     "http-proxy-middleware": "^2.0.6",
-    "react-app-rewired": "^2.2.1"
+    "mini-css-extract-plugin": "^2.7.6"
   }
 }
