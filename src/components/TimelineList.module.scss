@@ -1,0 +1,54 @@
+$audioHeight: 80px;
+.Container {
+    margin: auto;
+}
+.Container {
+    position: relative;
+    overflow: hidden;
+}
+.TableArea {
+    position: relative;
+    min-height: 10rem;
+    max-height: calc(100% - $audioHeight);
+    overflow: auto;
+}
+.Table {
+    margin: auto;
+    border-collapse: collapse;
+    thead {
+        tr {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+
+            th {
+                background-color: var(--info);
+
+                &.Title {
+                    width: 30rem;
+                }
+            }
+        }
+    }
+    tbody {
+        tr {
+            &.Current {
+                background-color: var(--secondary);
+            }
+        }
+        td {
+            padding: .3rem .8rem;
+        }
+    }
+}
+.SpinnerOverlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(#fff, .5);
+    z-index: 10;
+}
