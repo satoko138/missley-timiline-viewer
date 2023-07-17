@@ -43,7 +43,7 @@ export default function PostCard(props: Props) {
         if (props.post.image) return;   // イメージ優先
         if (showEmbed) return;
         const top = myRef.current.getBoundingClientRect().top;
-        const isShow = top < props.parentAreaRectInfo.height;
+        const isShow = top < props.parentAreaRectInfo.top + props.parentAreaRectInfo.height;
         setShowEmbed(isShow);
     }, [embedUrl, props.parentAreaRectInfo]);
 
