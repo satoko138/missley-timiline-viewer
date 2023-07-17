@@ -11,20 +11,16 @@ type Props = {
 export default function ConditionForm(props: Props) {
     const [ server, setServer ] = useState('');
     const [ account, setAccount ] = useState('');
-    const [ iframeScript, setUrl ] = useState('');
+    const [ iframeScript, setIframeScript ] = useState('');
 
     const onSearch = useCallback(() => {
         if (!props.onChange) return;
         const condition: Condition = { server, account };
         props.onChange(condition);
 
-        if (condition) {
-            const url = '';
-            setUrl(encodeURI(url));
+        const url = `${document.location.protocol}//${document.location.host}?server=${server}&account=${account}`;
+        setIframeScript(encodeURI(url));
 
-        } else {
-            setUrl('');
-        }
     }, [props, server, account]);
 
     const [ showCopied, setShowCopied ] = useState(false);

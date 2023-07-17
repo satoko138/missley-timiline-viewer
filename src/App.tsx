@@ -13,20 +13,17 @@ function App() {
     const [ initialized, setInitialized ] = useState(false);
 
     useMounted(() => {
-        const server = searchParams.get('server');
-        console.log('server', server);
-        if (server) {
-            setCondition({
-                server,
-                account: '',
-            })
-        }
+        const server = searchParams.get('server') ?? '';
+        const account = searchParams.get('account') ?? '';
+        setCondition({
+            server,
+            account,
+        })
         setInitialized(true);
     });
 
     const showCondition = useMemo(() => {
-        const keyword = searchParams.get('keyword');
-        return keyword === null;
+        return searchParams.get('server') === null || searchParams.get('account') === null;
     }, [searchParams])
 
     if (!initialized) {
