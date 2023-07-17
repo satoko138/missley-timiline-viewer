@@ -1,6 +1,9 @@
 import { globalStyle, style } from "@vanilla-extract/css";
 import { myVars } from "../styles/misskeyTheme.css";
 
+export const spinnerArea = style({
+    margin: '10px',
+})
 export const card = style({
     display: 'flex',
     flexDirection: 'column',

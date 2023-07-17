@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { GetOgpResult } from '../types/api-types';
 import Spinner from './Spinner';
 import { useWatch } from '../util/useWatch';
-import { card, description, image, imageArea, title } from './OgpCard.css';
+import { card, description, image, imageArea, spinnerArea, title } from './OgpCard.css';
 
 type Props = {
     url: string;
@@ -26,7 +26,7 @@ export default function OgpCard(props: Props) {
 
     if (!ogp) {
         return (
-            <div className={card}>
+            <div className={spinnerArea}>
                 <Spinner />
             </div>
         )
