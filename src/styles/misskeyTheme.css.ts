@@ -7,6 +7,7 @@ export const [myTheme, myVars] = createTheme({
         light: '#D9D5D2',
         gray: '#848484',
         dark: 'rgb(107, 114, 128)',
+        white: '#fcfcfc',
     }
 })
 

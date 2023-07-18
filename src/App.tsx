@@ -4,7 +4,7 @@ import ConditionForm from './components/ConditionForm';
 import { Condition } from './types/common';
 import { useSearchParams } from 'react-router-dom';
 import { useMounted } from './util/useMounted';
-import { app, conditionArea, explainParagraphStyle, spinnerOverlay, timelineArea, titleStyle } from './App.css';
+import { app, conditionArea, explainParagraphStyle, footerStyle, gitHubLogStyle, spinnerOverlay, timelineArea, titleStyle } from './App.css';
 import { myTheme } from './styles/misskeyTheme.css';
 import { GetTimelineResult } from './types/api-types';
 import { useWatch } from './util/useWatch';
@@ -23,6 +23,8 @@ Misskeyのタイムラインをブログ等に埋め込むためのスクリプ�
  以下を入力して「検索」ボタンを押下してください。
 `
 const explainHtml = marked.parse(explain);
+const copyright = marked.parse(process.env.REACT_APP_COPYRIGHT_MARKDOWN ?? '');
+
 function App() {
     const [ searchParams ] = useSearchParams();
     const [ condition, setCondition ] = useState<Condition|undefined>();
@@ -127,6 +129,18 @@ function App() {
             {loading &&
                 <div className={spinnerOverlay}>
                     <Spinner />
+                </div>
+            }
+            {showCondition &&
+                <div className={footerStyle}>
+                    <span dangerouslySetInnerHTML={{__html: copyright}} />
+                    {process.env.REACT_APP_GITHUB_URL &&
+                        <span className={gitHubLogStyle}>
+                            <a href={process.env.REACT_APP_GITHUB_URL} target='_blank' rel='noreferrer'>
+                                <img src="./github-mark-white.svg" className={gitHubLogStyle} alt="git hub" />
+                            </a>
+                        </span>
+                    }
                 </div>
             }
             <ConfirmDialog show={confirm!==undefined} {...confirm} onClose={onConfirmClose} />
