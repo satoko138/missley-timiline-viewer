@@ -4,7 +4,7 @@ import ConditionForm from './components/ConditionForm';
 import { Condition } from './types/common';
 import { useSearchParams } from 'react-router-dom';
 import { useMounted } from './util/useMounted';
-import { app, conditionArea, explainParagraphStyle, footerStyle, gitHubLogStyle, spinnerOverlay, timelineArea, titleStyle } from './App.css';
+import { app, conditionArea, explainParagraphStyle, footerStyle, gitHubLogStyle, searchModeStyle, spinnerOverlay, timelineArea, titleStyle } from './App.css';
 import { myTheme } from './styles/misskeyTheme.css';
 import { GetTimelineResult } from './types/api-types';
 import { useWatch } from './util/useWatch';
@@ -44,8 +44,8 @@ function App() {
         }
     });
 
-    const showCondition = useMemo(() => {
-        return searchParams.get('server') === null || searchParams.get('account') === null;
+    const mode = useMemo((): 'embed' | 'search' => {
+        return (searchParams.get('server') === null || searchParams.get('account') === null) ? 'search' : 'embed';
     }, [searchParams])
 
     const onLoad = useCallback(async() => {
@@ -107,9 +107,26 @@ function App() {
         setConfirm(undefined);
     }, []);
 
+    const body = useMemo(() => {
+        return (
+            <>
+                {(data && condition) &&
+                    <div className={timelineArea}>
+                        <TimelineList condition={condition} data={data} />
+                    </div>
+                }
+                {loading &&
+                    <div className={spinnerOverlay}>
+                        <Spinner />
+                    </div>
+                }
+            </>
+        )
+    }, [data, condition, loading]);
+
     return (
-        <div className={`${app} ${myTheme}`}>
-            {showCondition &&
+        <div className={`${app} ${mode === 'search' ? searchModeStyle : ''} ${myTheme}`}>
+            {mode === 'search' &&
                 <>
                     <h1 className={titleStyle}>{process.env.REACT_APP_TITLE ?? ''}</h1>
                     <p className={explainParagraphStyle} dangerouslySetInnerHTML={{__html: explainHtml}} />
@@ -121,17 +138,8 @@ function App() {
                     }
                 </>
             }
-            {(data && condition) &&
-                <div className={timelineArea}>
-                    <TimelineList condition={condition} data={data} />
-                </div>
-            }
-            {loading &&
-                <div className={spinnerOverlay}>
-                    <Spinner />
-                </div>
-            }
-            {showCondition &&
+            {body}
+            {mode === 'search' &&
                 <div className={footerStyle}>
                     <span dangerouslySetInnerHTML={{__html: copyright}} />
                     {process.env.REACT_APP_GITHUB_URL &&

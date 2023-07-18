@@ -1,6 +1,7 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { myVars } from './styles/misskeyTheme.css';
 
+const footerHeight = '2rem';
 export const app = style({
     maxWidth: '500px',
     height: '100vh',
@@ -10,7 +11,9 @@ export const app = style({
     flexDirection: 'column',
     overflow: 'hidden',
 })
-
+export const searchModeStyle = style({
+    height: `calc(100vh - ${footerHeight})}`
+})
 export const titleStyle = style({
     textAlign: 'center',
     color: myVars.color.secondary,
@@ -40,7 +43,7 @@ export const footerStyle = style({
     bottom: 0,
     left: 0,
     width: '100vw',
-    height: '2rem',
+    height: footerHeight,
     background: myVars.color.light,
     display: 'flex',
     justifyContent: 'flex-end',
