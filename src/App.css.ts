@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 
 export const app = style({
     maxWidth: '500px',
@@ -14,10 +14,16 @@ export const conditionArea = style({
     flex: 1,
 });
 
+globalStyle(`${app}:has(${conditionArea})`, {
+    padding: '10px',
+    boxSizing: 'border-box',
+})
+
 export const timelineArea = style({
     position: 'relative',
     overflow: 'hidden',
-    height: '100vh',
+    height: '100%',
+    display: 'grid',
 });
 
 export const spinnerOverlay = style({

@@ -5,12 +5,17 @@ export const iframeArea = style({
     width: '100%',
     maxWidth: '100%',
 })
-export const label = style({
-    marginRight: '1rem',
+export const description = style({
+    fontSize: '90%',
+    margin: 0,
 })
 export const iframeTextArea = style({
-    marginTop: '.5rem',
+    margin: '5px 0',
     display: 'block',
     height: '5rem',
     width: '100%',
+})
+export const copyButtonArea = style({
+    display: 'block',
+    textAlign: 'right',
 })

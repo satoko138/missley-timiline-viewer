@@ -4,17 +4,15 @@ import { myVars } from '../styles/misskeyTheme.css';
 export const container = style({
     position: 'relative',
     height: '100%',
-})
-
-export const innerContainer = style({
-    position: 'relative',
-    height: '100%',
+    overflow: 'hidden',
     border: `1px solid ${myVars.color.light}`,
     borderRadius: '5px',
+    boxSizing: 'border-box',
 })
 
+const authorAreaHeight = '3rem';
 export const authorArea = style({
-    height: '3rem',
+    height: authorAreaHeight,
     display: 'flex',
     alignItems: 'center',
     padding: '8px',
@@ -25,7 +23,8 @@ export const authorName = style ({
     textDecoration: 'none',
 })
 export const postsArea = style({
-    maxHeight: 'calc(100% - 3rem)',
+    position: 'relative',
+    height: `calc(100% - ${authorAreaHeight})`,
     overflowY: 'auto',
     overflowX: 'hidden',
 })
