@@ -23,14 +23,14 @@ export async function getTimeline(param: GetTimelineParam): Promise<GetTimelineR
             return {
                 id: i.guid,
                 link: i.link,
-                content: i["content:encoded"].replace(/:(.)*:/g, ''),   // 絵文字除去
+                content: i["content:encoded"].replace(/:[a-zA-Z0-9_]*:/g, '■'),   // 絵文字除去
                 image: i.enclosure?.["@_url"],
                 pub_date: i.pubDate,
             }
         });
         return {
             author: {
-                name: jObj.rss.channel.copyright.replace(/:(.)*:/g, ''),    // 絵文字除去
+                name: jObj.rss.channel.copyright.replace(/:[a-zA-Z0-9_]*:/g, '■'),    // 絵文字除去
                 description: jObj.rss.channel.description,
                 icon: jObj.rss.channel.image.url,
                 link: jObj.rss.channel.link,
