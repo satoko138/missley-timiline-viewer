@@ -4,6 +4,10 @@
   "private": true,
   "author": "Satocheeen <satoko@suzuki.email.ne.jp> (https://satocheeen.com/)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/satoko138/missley-timiline-viewer.git"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
