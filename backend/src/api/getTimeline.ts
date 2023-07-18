@@ -30,7 +30,7 @@ export async function getTimeline(param: GetTimelineParam): Promise<GetTimelineR
         });
         return {
             author: {
-                name: jObj.rss.channel.copyright.replace(/:[a-zA-Z0-9_]*:/g, '■'),    // 絵文字除去
+                name: jObj.rss.channel.copyright.replace(/:[a-zA-Z0-9_]*:/g, ''),    // 絵文字除去
                 description: jObj.rss.channel.description,
                 icon: jObj.rss.channel.image.url,
                 link: jObj.rss.channel.link,

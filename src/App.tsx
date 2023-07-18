@@ -4,18 +4,28 @@ import ConditionForm from './components/ConditionForm';
 import { Condition } from './types/common';
 import { useSearchParams } from 'react-router-dom';
 import { useMounted } from './util/useMounted';
-import { app, conditionArea, spinnerOverlay, timelineArea } from './App.css';
+import { app, conditionArea, explainParagraphStyle, spinnerOverlay, timelineArea, titleStyle } from './App.css';
 import { myTheme } from './styles/misskeyTheme.css';
 import { GetTimelineResult } from './types/api-types';
 import { useWatch } from './util/useWatch';
 import ConfirmDialog, { ConfirmParam } from './components/ConfirmDialog';
 import Spinner from './components/Spinner';
 import IframeScriptField from './components/IframeScriptField';
+import { marked } from 'marked';
 
+const explain = `
+Misskeyのタイムラインをブログ等に埋め込むためのスクリプトを生成します。
+- 投稿を最新20件まで表示します。
+- 以下は非対応です。
+  - 絵文字
+  - Renote
+
+ 以下を入力して「検索」ボタンを押下してください。
+`
+const explainHtml = marked.parse(explain);
 function App() {
     const [ searchParams ] = useSearchParams();
     const [ condition, setCondition ] = useState<Condition|undefined>();
-    const [ initialized, setInitialized ] = useState(false);
     const [ data, setData ] = useState<GetTimelineResult|undefined>();
     const loadingRef = useRef(false);
     const [ loading, setLoading ] = useState(false);
@@ -30,7 +40,6 @@ function App() {
                 account,
             })
         }
-        setInitialized(true);
     });
 
     const showCondition = useMemo(() => {
@@ -96,15 +105,12 @@ function App() {
         setConfirm(undefined);
     }, []);
 
-    if (!initialized) {
-        // 初期化完了前にMediaListで全件取得が動いてしまうので、初期化完了を待つ
-        return null;
-    }
-
     return (
         <div className={`${app} ${myTheme}`}>
             {showCondition &&
                 <>
+                    <h1 className={titleStyle}>Misskey Timeline Viewer</h1>
+                    <p className={explainParagraphStyle} dangerouslySetInnerHTML={{__html: explainHtml}} />
                     <div className={conditionArea}>
                         <ConditionForm onChange={(condition) => setCondition(condition)} />
                     </div>

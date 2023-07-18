@@ -14,7 +14,7 @@ export const card = style({
 
     ':hover': {
         cursor: 'pointer',
-        background: myVars.color.secondary,
+        background: myVars.color.light,
     }
 })
 

@@ -24,11 +24,11 @@ export default function ConditionForm(props: Props) {
         <div className={container}>
             <div className={conditionForm}>
                 <TextField label='Server'>
-                    <input type='text' className={input} placeholder='misskey.io'
+                    <input type='text' name="server" className={input} placeholder='misskey.io'
                             value={server} onChange={(evt) => setServer(evt.target.value)} />
                 </TextField>
                 <TextField label='Account'>
-                    <input type='text' className={input}
+                    <input type='text' name="account" className={input}
                             value={account} onChange={(evt) => setAccount(evt.target.value)} />
                 </TextField>
                 <Button type='primary' onClick={onSearch}>検索</Button>

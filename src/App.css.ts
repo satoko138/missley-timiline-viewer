@@ -1,4 +1,5 @@
 import { globalStyle, style } from '@vanilla-extract/css';
+import { myVars } from './styles/misskeyTheme.css';
 
 export const app = style({
     maxWidth: '500px',
@@ -10,6 +11,14 @@ export const app = style({
     overflow: 'hidden',
 })
 
+export const titleStyle = style({
+    textAlign: 'center',
+    color: myVars.color.secondary,
+})
+
+export const explainParagraphStyle = style({
+    margin: 0,
+})
 export const conditionArea = style({
     flex: 1,
 });
