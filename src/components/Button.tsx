@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import styles from './Button.module.scss';
+import { buttonStyle, variant } from './Button.css';
 
 type Props = {
     children?: string;
@@ -15,7 +15,7 @@ export default function Button(props: Props) {
     }, [props]);
 
     return (
-        <button className={`${styles.Button} ${styles[props.type]}`} onClick={onClick}>
+        <button className={`${buttonStyle} ${variant[props.type]}`} onClick={onClick}>
             {props.children}
         </button>
     );

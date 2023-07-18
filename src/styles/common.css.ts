@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import { myVars } from "./misskeyTheme.css";
 
 export const input = style({
     boxSizing: 'border-box',
@@ -12,9 +13,9 @@ export const input = style({
     transition: '0.3s',
     WebkitAppearance: 'none',
     ':focus': {
-        border: '1px solid var(--primary)'
+        border: `1px solid ${myVars.color.primary}`
     },
     '::placeholder': {
-        color: 'var(--gray)'
+        color: myVars.color.light,
     }
 })

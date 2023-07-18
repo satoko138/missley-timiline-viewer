@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import styles from './ConfirmDialog.module.scss';
+import { bodyStyle, closeBtnStyle, dialogStyle, headerStyle } from './ConfirmDialog.css';
 
 type Props = {
     show: boolean;
@@ -32,11 +32,11 @@ export default function ConfirmDialog(props: Props) {
     }, [props])
 
     return (
-        <dialog ref={myRef} className={styles.Dialog}>
-            <div className={styles.Header}>
-                <span className={styles.Close} onClick={onClose}>×</span>
+        <dialog ref={myRef} className={dialogStyle}>
+            <div className={headerStyle}>
+                <span className={closeBtnStyle} onClick={onClose}>×</span>
             </div>
-            <div className={styles.Body}>
+            <div className={bodyStyle}>
                 {props.message ?? ''}
             </div>
         </dialog>

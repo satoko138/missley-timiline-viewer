@@ -1,13 +1,10 @@
 import React from 'react';
-import styles from './Spinner.module.scss';
+import { dotPulse, dotPulseeDot } from './Spinner.css';
 
-type Props = {
-    size?: 'normal' | 'small'
-}
-export default function Spinner(props: Props) {
+export default function Spinner() {
     return (
-        <div className={styles.DotPulse}>
-            <div className={styles.DotPulseDot}></div>
+        <div className={dotPulse}>
+            <div className={dotPulseeDot}></div>
         </div>
     );
 }
