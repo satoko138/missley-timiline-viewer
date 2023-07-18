@@ -74,14 +74,3 @@ export const spinnerOverlay = style({
     backgroundColor: 'rgba(255,255,255, .5)',
     zIndex: 10,
 })
-
-globalStyle('body', {
-    margin: 0,
-    fontFamily: `-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif`,
-    color: myVars.color.dark,
-
-    WebkitFontSmoothing: 'antialiased',
-    MozOsxFontSmoothing: 'grayscale',
-})
