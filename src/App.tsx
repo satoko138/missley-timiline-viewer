@@ -109,7 +109,7 @@ function App() {
         <div className={`${app} ${myTheme}`}>
             {showCondition &&
                 <>
-                    <h1 className={titleStyle}>Misskey Timeline Viewer</h1>
+                    <h1 className={titleStyle}>{process.env.REACT_APP_TITLE ?? ''}</h1>
                     <p className={explainParagraphStyle} dangerouslySetInnerHTML={{__html: explainHtml}} />
                     <div className={conditionArea}>
                         <ConditionForm onChange={(condition) => setCondition(condition)} />
