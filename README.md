@@ -1,19 +1,25 @@
 # Misskey Timeline Viewer
-Misskeyの投稿をiframeで埋め込み表示するためのものです。
-
+Misskeyの投稿をiframeで埋め込み表示するためのものです。  
 動作環境 -> https://mtlv.satocheeen.com/
 
+以下のようなiframeをブログ等に埋め込めます。
+
+![Timeline](./document/image1.png)
+
+
+Misskeyサーバーが配信しているRSSを用いて実現しています。
 - 投稿を最新20件まで表示します。
 - 以下は非対応です。
-  - 絵文字
   - Renote
+    - RSSで配信されていないので。
+  - 絵文字
+    - ラベルから絵文字画像を取得する方法が見つからないので。
 - 機能
   - Misskeyのタイムラインをブログ等に埋め込むためのスクリプトを生成
   - スクリプトをブログ等に埋め込むと、Misskeyのタイムラインを表示
 
-![Timeline](./document/image1.png)
 
-## 自前で構築する場合
+## 自前でサービス構築する場合
 
 Docker Hubにビルドイメージを置いているので、Docker環境のあるサーバ上で以下docker-compose.ymlを配置すれば、環境構築できます。
 
