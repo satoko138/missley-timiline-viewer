@@ -34,7 +34,7 @@ services:
         - [log folder path]:/var/log/www
 ```
 
-イメージバージョンは、以下で確認してください。
+イメージバージョンは、以下Docker Hubを確認してください。
 
 https://hub.docker.com/repository/docker/satocheeen/misskey-timeline-viewer/
 
@@ -68,6 +68,6 @@ https://hub.docker.com/repository/docker/satocheeen/misskey-timeline-viewer/
    ```
 
 ## Copyright
-Copyright (c) 2023 satocheeen.com
+Copyright (c) 2023 [Satocheeen.com](https://satocheeeen.com)
 
 Released under the MIT license
