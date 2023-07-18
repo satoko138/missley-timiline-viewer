@@ -19,7 +19,6 @@ export async function getTimeline(param: GetTimelineParam): Promise<GetTimelineR
             throw new Error('incompatible format');
         }
         const posts = jObj.rss.channel.item.map((i): Post => {
-            console.log(i);
             return {
                 id: i.guid,
                 link: i.link,
