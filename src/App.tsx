@@ -113,9 +113,9 @@ function App() {
                     }
                 </>
             }
-            {data &&
+            {(data && condition) &&
                 <div className={timelineArea}>
-                    <TimelineList data={data} />
+                    <TimelineList condition={condition} data={data} />
                 </div>
             }
             {loading &&

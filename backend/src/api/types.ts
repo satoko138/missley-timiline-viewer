@@ -8,6 +8,7 @@ export type RssObject = {
                 title: string;
                 url: string;
             };
+            generator: 'Misskey';
             copyright: string;
             item: {
                 guid: string;

@@ -1,10 +1,12 @@
 import { useCallback, useRef, useState } from 'react';
 import { GetTimelineResult } from '../types/api-types';
 import PostCard from './PostCard';
-import { authorArea, authorName, container, icon, postsArea } from './TimelineList.css';
+import { authorArea, authorName, container, icon, label, postsArea, serverName } from './TimelineList.css';
 import { useMounted } from '../util/useMounted';
+import { Condition } from '../types/common';
 
 type Props = {
+    condition: Condition;
     data: GetTimelineResult;
 }
 export type PostAreaRectInfo = {
@@ -36,7 +38,13 @@ export default function TimelineList(props: Props) {
             <div className={container}>
                 <div className={authorArea}>
                     <img src={props.data.author.icon} className={icon} alt="icon" />
-                    <a href={props.data.author.link} className={authorName}>{props.data.author.name}</a> のつぶやき
+                    <div className={label}>
+                        <span>
+                            <a href={props.data.author.link} className={authorName}>{props.data.author.name}</a>
+                            's note
+                        </span>
+                        <span className={serverName}>@{props.condition.server}</span>
+                    </div>
                 </div>
                 <div className={postsArea} ref={postAreaRef} onScroll={handleScroll}>
                     {props.data.posts.map((post) => {

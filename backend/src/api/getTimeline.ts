@@ -16,6 +16,9 @@ export async function getTimeline(param: GetTimelineParam): Promise<GetTimelineR
         const rssContents = res.data;
         const jObj = xp.parse(rssContents) as RssObject;
    
+        if (jObj.rss.channel.generator !== 'Misskey') {
+            throw new Error('incompatible format');
+        }
         const posts = jObj.rss.channel.item.map((i): Post => {
             return {
                 id: i.guid,

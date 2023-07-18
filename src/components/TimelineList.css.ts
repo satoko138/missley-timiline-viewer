@@ -19,6 +19,16 @@ export const authorArea = style({
     boxSizing: 'border-box',
     borderBottom: `1px solid ${myVars.color.light}`,
 });
+export const label = style({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'baseline',
+    marginLeft: '.5rem',
+});
+export const serverName = style({
+    fontSize: '80%',
+    color: myVars.color.gray,
+})
 export const authorName = style ({
     textDecoration: 'none',
 })
