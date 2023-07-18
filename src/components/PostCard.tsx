@@ -6,6 +6,7 @@ import { HiOutlineExternalLink } from 'react-icons/hi';
 import OgpCard from './OgpCard';
 import { useWatch } from '../util/useWatch';
 import { PostAreaRectInfo } from './TimelineList';
+import dayjs from 'dayjs';
 
 type Props = {
     post: Post;
@@ -28,6 +29,10 @@ export default function PostCard(props: Props) {
         );
     }, [props.post.content]);
 
+    const publishDate = useMemo(() => {
+        return dayjs(props.post.pub_date).format('YYYY-MM-DD HH:mm');
+    }, [props.post.pub_date]);
+
     const embedUrl = useMemo(() => {
         const match = props.post.content.match(regExp);
         if (!match) return null;
@@ -49,7 +54,7 @@ export default function PostCard(props: Props) {
 
     return (
         <div className={card} ref={myRef}>
-            <div className={pubDate}>{props.post.pub_date}</div>
+            <div className={pubDate}>{publishDate}</div>
             <div>{content}</div>
             {(showEmbed && embedUrl) && 
                 <OgpCard url={embedUrl} />

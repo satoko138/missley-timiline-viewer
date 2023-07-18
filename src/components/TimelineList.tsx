@@ -40,7 +40,7 @@ export default function TimelineList(props: Props) {
                     <img src={props.data.author.icon} className={icon} alt="icon" />
                     <div className={label}>
                         <span>
-                            <a href={props.data.author.link} className={authorName}>{props.data.author.name}</a>
+                            <a href={props.data.author.link} target="_blank" className={authorName}>{props.data.author.name}</a>
                             's note
                         </span>
                         <span className={serverName}>@{props.condition.server}</span>
